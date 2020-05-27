@@ -1,5 +1,6 @@
 package tests;
 
+import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.logevents.SelenideLogger;
 import io.qameta.allure.Description;
 import io.qameta.allure.Epic;
@@ -14,8 +15,7 @@ import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byName;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+
 
 @Epic("QA.GURU automation course")
 @Story("Google tests")
@@ -25,6 +25,7 @@ class GoogleTests {
     @BeforeEach
     void beforeEach() {
         SelenideLogger.addListener("AllureSelenide", new AllureSelenide().screenshots(true));
+        Configuration.remote = "http://" + System.getProperty("selenoid_url") + ":4444/wd/hub/";
     }
 
     @Test
@@ -35,7 +36,7 @@ class GoogleTests {
 
         $(byName("q")).val("lepra").pressEnter();
 
-        $("html").shouldHave(text("Лепрозорий: вход"));
+        $("html").shouldHave(text("Lepra - Wikipedia"));
     }
 
     @Test
