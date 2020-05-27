@@ -30,7 +30,7 @@ class GoogleTests {
 
     @Test
     @Description("Google test, we look for lepra")
-    @DisplayName("Google test")
+    @DisplayName("Successful search for lepra in google")
     void successfulSearch() {
         open("http://google.com");
 
@@ -41,11 +41,11 @@ class GoogleTests {
 
     @Test
     @Description("Google test, we look for 2ch, but cant find")
-    @DisplayName("Google test")
+    @DisplayName("Unsuccessful search for lepra in google")
     void unSuccessfulSearch() {
         open("http://google.com");
 
-        $(byName("q")).val("2ch").pressEnter();
+        $(byName("q")).val("lepra").pressEnter();
 
         $("html").shouldHave(text("Лепрозорий: вход"));
     }
